@@ -1,0 +1,4 @@
+Baby app
+pkg name: com.mexemai.babycam.aicam
+kestrore name:  mexemaibaby
+password:  mexemaibaby

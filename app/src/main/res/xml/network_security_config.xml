@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<network-security-config>-->
+<!--    <domain-config cleartextTrafficPermitted="true">-->
+<!--        <domain includeSubdomains="true">192.168.119.200</domain>-->
+<!--        &lt;!&ndash; You can add more domains or IP addresses as needed &ndash;&gt;-->
+<!--    </domain-config>-->
+<!--    &lt;!&ndash; Optionally allow cleartext traffic for all domains &ndash;&gt;-->
+<!--    <base-config cleartextTrafficPermitted="true" />-->
+<!--</network-security-config>-->
+
+
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
