@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "272982833124",
+    "project_id": "babycam-75655",
+    "storage_bucket": "babycam-75655.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272982833124:android:889cb55ddb460588feb9f1",
+        "android_client_info": {
+          "package_name": "com.mexemai.babycam.aicam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKcjYSbg5NUSDxLeONp9HDiTUNH3IVisc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

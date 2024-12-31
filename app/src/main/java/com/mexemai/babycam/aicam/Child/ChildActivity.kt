@@ -158,6 +158,7 @@ class CameraStreamActivity : ComponentActivity() , MessageReceiver, FlashLight{
         gestureDetector = GestureDetector(this, SingleTapListener())
 
         val ipAddress = getIPAddress()
+        Log.d("IPD", "IPDDDDDDD:  $ipAddress")
 
         qrCodeBitmap = generateQRCode("$ipAddress:8081")
 //        zeroMQPublisher = ZeroMQPublisher("$ipAddress:8081")

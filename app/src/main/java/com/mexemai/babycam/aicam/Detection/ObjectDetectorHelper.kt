@@ -67,11 +67,11 @@ class ObjectDetectorHelper(
 
         val modelName =
             when (currentModel) {
-                MODEL_MOBILENETV1 -> "baby_activity_latest.tflite"
+                MODEL_MOBILENETV1 -> "updated_baby.tflite"
                 MODEL_EFFICIENTDETV0 -> "efficientdet-lite0.tflite"
                 MODEL_EFFICIENTDETV1 -> "efficientdet-lite1.tflite"
                 MODEL_EFFICIENTDETV2 -> "efficientdet-lite2.tflite"
-                else -> "baby_activity_latest.tflite"
+                else -> "updated_baby.tflite"
             }
 
         try {

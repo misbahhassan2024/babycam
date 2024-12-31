@@ -56,7 +56,7 @@ class NextScreenActivity : ComponentActivity() {
             ParentChildModeScreen(
                 onBabyClick = {
                     if (isNetworkAvailable()) {
-                        startActivity(Intent(this, CameraStreamActivity::class.java))
+                        startActivity(Intent(this, QrCodeActivity::class.java))
                     } else {
                         showNoInternetDialog()
                     }
@@ -244,7 +244,7 @@ fun HowToUseDialog(onDismiss: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = "1- Click 'Baby' to start monitoring your baby. \n" +
+                    text = "1- Click 'Baby to start monitoring your baby. \n" +
                             "2- After connection live stream starts. \n" +
                             "3- Both devices connect with the same internet then your connection was successful",
                     fontSize = 16.sp,
@@ -263,7 +263,7 @@ fun HowToUseDialog(onDismiss: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = "1- Click 'Parents' to monitor your baby.\n" +
+                    text = "1- Click 'Parents to monitor your baby.\n" +
                             "2- Scan Qr code from baby device. \n" +
                             "3- After scanning the streaming starts. \n" +
                             "4- From setting option You can select different filters and alarms. \n" +
@@ -289,7 +289,7 @@ fun HowToUseDialog(onDismiss: () -> Unit) {
                 Button(
                     onClick = { onDismiss() },
                 ) {
-                    Text("Close", color = Color.White)
+                    Text("Done", color = Color.White)
                 }
             }
         }

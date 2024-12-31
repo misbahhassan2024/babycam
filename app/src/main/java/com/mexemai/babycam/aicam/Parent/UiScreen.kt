@@ -162,7 +162,7 @@ class UiScreen : ComponentActivity() {
     @Composable
     fun UiScreenContent() {
         val context = LocalContext.current
-        var ipAddress by remember { mutableStateOf("192.168.10.10:8081") }
+        var ipAddress by remember { mutableStateOf("192.168.10.8:8081") }
         // State to manage dialog visibility
         var showDialog by remember { mutableStateOf(true) }
         // Set up the QR scanner launcher
@@ -229,7 +229,7 @@ class UiScreen : ComponentActivity() {
 //            ) {
 //                Text("Show Stream in App")
 //            }
-            Spacer(modifier = Modifier.height(16.dp))
+//            Spacer(modifier = Modifier.height(16.dp))
 
             // Button to scan the QR code
             Button(

@@ -64,11 +64,19 @@ import com.mexemai.babycam.aicam.ui.theme.Compose_IpTheme
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
+    private var animationStarted by mutableStateOf(false)  // Track whether the animation has already started
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Compose_IpTheme {
-                BabyMonitorScreen()
+                BabyMonitorScreen(
+                    animationStarted = animationStarted,
+                    onAnimationComplete = {
+                        // Update the state to true when animation completes
+                        animationStarted = true
+                    }
+                )
             }
         }
 
@@ -85,69 +93,77 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Reset animation state when returning to the screen
+        animationStarted = false
+    }
+
     companion object {
         private const val CAMERA_PERMISSION_REQUEST_CODE = 100
     }
 }
-
 @Composable
-/*
-fun BabyMonitorScreen() {
-    val context = LocalContext.current
+        /*
+        fun BabyMonitorScreen() {
+            val context = LocalContext.current
 
 
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-//                        Color(0xFF8E24AA),//.copy(alpha = 0.5f),
-                        Color(0xFFBA68C8),
-                        Color(0xFF00BBD4),
-                        Color(0xFF0288D1),
-                        Color(0xFFFFA726).copy(alpha = 0.6f)
-                    )
-                )
-            ) // Set background color to blue
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Spacer(modifier = Modifier.height(32.dp))
-
-            // Button at the bottom
-            Button(
-                onClick = {
-                    val intent = Intent(context, NextScreenActivity::class.java)
-                    context.startActivity(intent)
-                },
-                colors = ButtonDefaults.buttonColors(Color.Transparent),
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth(0.5f)
-                    .height(48.dp)
-                    .padding(start = 8.dp)
+                    .fillMaxSize()
                     .background(
-                        brush = Brush.horizontalGradient(
+                        brush = Brush.verticalGradient(
                             colors = listOf(
-                                Color(0xFF8E24AA).copy(alpha = 0.5f),
-                                Color(0xFFBA68C8).copy(alpha = 0.3f)
+        //                        Color(0xFF8E24AA),//.copy(alpha = 0.5f),
+                                Color(0xFFBA68C8),
+                                Color(0xFF00BBD4),
+                                Color(0xFF0288D1),
+                                Color(0xFFFFA726).copy(alpha = 0.6f)
                             )
-                        ),
-                        shape = RoundedCornerShape(12.dp)
-                    )
+                        )
+                    ) // Set background color to blue
             ) {
-                Text(text = "Start Now", color = Color.Black, fontSize = 16.sp)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    // Button at the bottom
+                    Button(
+                        onClick = {
+                            val intent = Intent(context, NextScreenActivity::class.java)
+                            context.startActivity(intent)
+                        },
+                        colors = ButtonDefaults.buttonColors(Color.Transparent),
+                        modifier = Modifier
+                            .fillMaxWidth(0.5f)
+                            .height(48.dp)
+                            .padding(start = 8.dp)
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(
+                                        Color(0xFF8E24AA).copy(alpha = 0.5f),
+                                        Color(0xFFBA68C8).copy(alpha = 0.3f)
+                                    )
+                                ),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                    ) {
+                        Text(text = "Start Now", color = Color.Black, fontSize = 16.sp)
+                    }
+                }
             }
         }
-    }
-}
-*/
+        */
+
+/*
+
 fun BabyMonitorScreen() {
     val context = LocalContext.current
 
@@ -166,7 +182,8 @@ fun BabyMonitorScreen() {
             animationSpec = tween(durationMillis = 800, easing = LinearOutSlowInEasing)
         )
         // Animate the title after logo
-        /*characterOffsets.forEachIndexed { index, animatable ->
+        */
+/*characterOffsets.forEachIndexed { index, animatable ->
             animatable.animateTo(
                 targetValue = 0f,
                 animationSpec = tween(
@@ -175,18 +192,21 @@ fun BabyMonitorScreen() {
                 )
             )
             delay(100) // Delay before animating the next character
-        }*/
+        }*//*
+
         text2OffsetY.animateTo(
             targetValue = 0f,
             animationSpec = tween(durationMillis = 800, easing = LinearOutSlowInEasing)
         )
         // Show loading animation for 2 seconds after text animation
-      /*  showLoading = true
-        delay(2000)
-        showLoading = false
-        // Navigate to the next activity
-        val intent = Intent(context, NextScreenActivity::class.java)
-        context.startActivity(intent)*/
+        */
+/*  showLoading = true
+          delay(2000)
+          showLoading = false
+          // Navigate to the next activity
+          val intent = Intent(context, NextScreenActivity::class.java)
+          context.startActivity(intent)*//*
+
         // Show hourglass animation for 2 seconds
         showLoading = true
         sandHeight.animateTo(
@@ -234,7 +254,8 @@ fun BabyMonitorScreen() {
             Spacer(modifier = Modifier.height(1.dp))
 
             // Title below the logo with animation
-            /*Row(horizontalArrangement = Arrangement.Center) {
+            */
+/*Row(horizontalArrangement = Arrangement.Center) {
                 text.forEachIndexed { index, char ->
                     Text(
                         text = char.toString(),
@@ -246,7 +267,8 @@ fun BabyMonitorScreen() {
 //                        modifier = Modifier.offset(y = characterOffsets[index].value.dp)
                     )
                 }
-            }*/
+            }*//*
+
             Text(
                 text = "AI Baby Monitor",
                 fontSize = 40.sp,
@@ -258,20 +280,104 @@ fun BabyMonitorScreen() {
             Spacer(modifier = Modifier.weight(2f))
 
 
-
             // Show loading animation when text and logo animation complete
             if (showLoading) {
-               /* CircularProgressIndicator(
-                    color = Color.Blue,
-                    modifier = Modifier.size(48.dp)
-                )*/
                 CircularLoadingAnimation()
             }
         }
     }
 }
 
-@SuppressLint("SuspiciousIndentation")
+
+*/
+
+fun BabyMonitorScreen(animationStarted: Boolean, onAnimationComplete: () -> Unit) {
+    val context = LocalContext.current
+
+    val text = "AI Baby Monitor"
+    val characterOffsets = remember { text.map { Animatable(500f) } }
+    // Define animation states
+    val logoOffsetX = remember { Animatable(500f) }
+    val text2OffsetY = remember { Animatable(500f) }
+    var showLoading by remember { mutableStateOf(false) }
+    val sandHeight = remember { Animatable(0f) }
+
+    // Trigger animation immediately when animationStarted is false
+    if (!animationStarted) {
+        LaunchedEffect(animationStarted) {  // LaunchedEffect triggered when state changes
+            // Animate the logo
+            logoOffsetX.animateTo(
+                targetValue = 0f,
+                animationSpec = tween(durationMillis = 800, easing = LinearOutSlowInEasing)
+            )
+            text2OffsetY.animateTo(
+                targetValue = 0f,
+                animationSpec = tween(durationMillis = 800, easing = LinearOutSlowInEasing)
+            )
+            showLoading = true
+            sandHeight.animateTo(
+                targetValue = 1f,
+                animationSpec = tween(durationMillis = 2000, easing = LinearOutSlowInEasing)
+            )
+            showLoading = false
+            // Notify when animation is complete
+            onAnimationComplete()
+
+            // Navigate to the next activity
+            val intent = Intent(context, NextScreenActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFFBA68C8),
+                        Color(0xFF00BBD4),
+                        Color(0xFF0288D1),
+                        Color(0xFFFFA726).copy(alpha = 0.6f)
+                    )
+                )
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Spacer(modifier = Modifier.weight(1f))
+
+            // Logo at the center with animation
+            Image(
+                painter = painterResource(id = R.drawable.log), // Replace with your logo drawable
+                contentDescription = "App Logo",
+                modifier = Modifier
+                    .offset(y = logoOffsetX.value.dp)
+                    .size(260.dp)
+            )
+
+            Spacer(modifier = Modifier.height(1.dp))
+            Text(
+                text = "AI Baby Monitor",
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Thin,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.offset(y = text2OffsetY.value.dp)
+            )
+            Spacer(modifier = Modifier.weight(2f))
+
+            // Show loading animation when text and logo animation complete
+            CircularLoadingAnimation(isVisible = showLoading)
+        }
+    }
+}
+/*@SuppressLint("SuspiciousIndentation")
 @Composable
 fun CircularLoadingAnimation() {
     val infiniteTransition = rememberInfiniteTransition()
@@ -316,10 +422,65 @@ fun CircularLoadingAnimation() {
                 )
             }
         }
-    }
+    }*/
 
+@SuppressLint("SuspiciousIndentation")
+@Composable
+fun CircularLoadingAnimation(isVisible: Boolean) {
+    // Control the animation visibility based on the isVisible state
+    if (!isVisible) return
+
+    val infiniteTransition = rememberInfiniteTransition()
+    val rotationAngle = infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 2000, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        )
+    )
+
+    Canvas(modifier = Modifier.size(70.dp)) {
+        val canvasSize = size.minDimension
+        val arcStrokeWidth = canvasSize * 0.05f // Adjust stroke width based on canvas size
+        val arcRadius = (canvasSize - arcStrokeWidth) / 2
+
+        val gradientBrush = Brush.sweepGradient(
+            colors = listOf(
+                Color(0xFFBA68C8),
+                Color(0xFF00BBD4),
+                Color(0xFF0288D1),
+                Color(0xFFFFA726).copy(alpha = 0.6f)
+            )
+        )
+
+        // Draw multiple rotating arcs
+        for (i in 0..3) {
+            drawArc(
+                brush = gradientBrush,
+                startAngle = rotationAngle.value + i * 90f, // Adjust angles for multiple arcs
+                sweepAngle = 60f, // Arc length
+                useCenter = false,
+                style = Stroke(width = arcStrokeWidth),
+                topLeft = Offset(
+                    x = (canvasSize - arcRadius * 2) / 2,
+                    y = (canvasSize - arcRadius * 2) / 2
+                ),
+                size = androidx.compose.ui.geometry.Size(
+                    width = arcRadius * 2,
+                    height = arcRadius * 2
+                )
+            )
+        }
+    }
+}
+
+
+
+/*
 @Preview(showBackground = true)
 @Composable
 fun PreviewBabyMonitorScreen() {
     BabyMonitorScreen()
 }
+*/

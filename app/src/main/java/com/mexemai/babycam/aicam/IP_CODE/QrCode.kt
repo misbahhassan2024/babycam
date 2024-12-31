@@ -6,12 +6,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
@@ -46,6 +50,17 @@ fun QrCode() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+//                        Color(0xFF8E24AA),//.copy(alpha = 0.5f),
+                        Color(0xFFBA68C8),
+                        Color(0xFF00BBD4),
+                        Color(0xFF0288D1),
+                        Color(0xFFFFA726).copy(alpha = 0.6f)
+                    )
+                )
+            )
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -55,13 +70,13 @@ fun QrCode() {
             bitmap = qrCodeBitmap.asImageBitmap(),
             contentDescription = "QR Code for IP Address",
             modifier = Modifier
-                .size(200.dp)  // Adjust the size as needed
+                .size(400.dp)  // Adjust the size as needed
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Display the IP address
-        Text("IP Address: http://$ipAddress:8081")
+//        // Display the IP address
+//        Text("IP Address: http://$ipAddress:8081")
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -70,12 +85,20 @@ fun QrCode() {
                 val intent = Intent(context, CameraStreamActivity::class.java)
                 context.startActivity(intent)
             },
-            colors = androidx.compose.material3.ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFFFC107)
-            ),
+            colors = ButtonDefaults.buttonColors(Color.Transparent),
+
             modifier = Modifier
                 .fillMaxWidth()
-                .height(65.dp)
+                .height(50.dp)
+                .background(
+                    brush = Brush.horizontalGradient(
+                        colors = listOf(
+                            Color(0xFFF57C00).copy(alpha = 0.9f),
+                            Color(0xFFFFA726).copy(alpha = 0.6f)
+                        )
+                    ),
+                    shape = RoundedCornerShape(12.dp)
+                )
         ) {
             Text(
                 "Done",
@@ -88,7 +111,7 @@ fun QrCode() {
 
 
 fun generateQRCode(text: String): Bitmap {
-    val size = 512 // Size of the QR code
+    val size = 700 // Size of the QR code
     val qrCodeWriter = QRCodeWriter()
     val bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, size, size)
     val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565)
